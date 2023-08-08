@@ -3,13 +3,13 @@ import RoomIcon from '@mui/icons-material/Room';
 
 import "./app.css";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-// added the following 6 lines.
 import mapboxgl from 'mapbox-gl';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js";
 import Register from "./components/Register";
 import Login from "./components/Login";
+
 // The following is required to stop "npm build" from transpiling mapbox code.
 // notice the exclamation point in the import.
 // @ts-ignore
@@ -58,7 +58,7 @@ function App() {
     };
 
     try {
-      const res = await axios.post("/api/pins", newPin);
+      const res = await axios.post("https://travereview.onrender.com/api/pins", newPin);
       setPins([...pins, res.data]);
       setNewPlace(null);
     } catch (err) {
@@ -69,7 +69,7 @@ function App() {
   useEffect(() => {
     const getPins = async () => {
       try {
-        const allPins = await axios.get("/api/pins")
+        const allPins = await axios.get(`https://travereview.onrender.com/api/pins`)
         
         setPins(allPins.data);
       } catch (err) {
@@ -97,7 +97,7 @@ function App() {
         onDblClick={currentUsername && handleAddClick}
       >
         {pins.map((p) => (
-          <>
+          <>          
             <Marker
               latitude={p.lat}
               longitude={p.long}

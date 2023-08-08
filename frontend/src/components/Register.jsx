@@ -22,7 +22,7 @@ export default function Register({ setShowRegister }) {
     };
 
     try {
-      await axios.post("/api/users/register", newUser);
+      await axios.post("https://travereview.onrender.com/api/users/register", newUser);
       setError(false);
       setSuccess(true);
     } catch (err) {
